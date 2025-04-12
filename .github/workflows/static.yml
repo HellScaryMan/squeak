@@ -31,9 +31,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Setting up the environment with the Telegram bot token (if needed)
-      - name: Set Telegram Bot Token
-        run: echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> $GITHUB_ENV
+      - name: Replace Bot Token in index.html
+        run: |
+          sed -i 's|TELEGRAM_BOT_TOKEN_PLACE|${{ secrets.TELEGRAM_BOT_TOKEN }}|g' ./index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
