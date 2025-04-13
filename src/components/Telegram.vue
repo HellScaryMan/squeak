@@ -29,6 +29,9 @@ onMounted(() => {
     tg.sendData(JSON.stringify({ from: 'mainButton', time: Date.now() }))
   })
   tg.MainButton.show()
+
+  console.log(tg.initDataUnsafe); // тут є user.id
+
 })
 
 function sendLocal() {
