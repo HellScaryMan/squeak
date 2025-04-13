@@ -2,7 +2,7 @@
 
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import TelegramLoginWidget from './components/TelegramLoginWidget.vue'
+import TelegramLoginWidget from './components/Telegram.vue'
 </script>
 
 <template>
