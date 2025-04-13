@@ -3,7 +3,6 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TelegramLoginWidget from './components/Telegram.vue'
-import Rec from './components/Rec.vue'
 </script>
 
 <template>
@@ -16,7 +15,6 @@ import Rec from './components/Rec.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <Rec />
   <HelloWorld msg="Vite + Vue" />
   <TelegramLoginWidget msg="Vite + Vue" />
 </template>
