@@ -3,14 +3,17 @@ import { ref } from 'vue'
 
 defineProps({
   msg: String,
+  tk: String
 })
 
 const count = ref(0)
+const tk = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
 
+  {{ tk }}
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
     <p>
