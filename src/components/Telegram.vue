@@ -2,10 +2,10 @@
   <div v-if="user">
     👋 Привіт, {{ user.first_name }} {{ user.last_name }}
     <br />
-    <button @click="sendData">Надіслати</button>
+    <button @click="sendLocal">Локальна кнопка</button>
   </div>
   <div v-else>
-    🚫 Запусти через Telegram
+    ⛔ Відкрий мене через Telegram WebApp
   </div>
 </template>
 
@@ -16,47 +16,31 @@ const user = ref(null)
 
 onMounted(() => {
   const tg = window.Telegram?.WebApp
-  console.log('window.Telegram:', tg)
-
   if (!tg) {
-    // 👇 Для локальної розробки в браузері (тест)
-    user.value = {
-      id: 123456,
-      first_name: 'Dev',
-      last_name: 'Test',
-      username: 'devtest',
-      language_code: 'uk',
-      is_premium: false,
-    }
+    console.warn('❌ Не в Telegram WebApp')
     return
   }
 
   tg.ready()
   user.value = tg.initDataUnsafe?.user || null
 
-  tg.MainButton.setText('🔥 Надіслати')
+  tg.MainButton.setText('🔥 Надіслати в бот')
   tg.MainButton.onClick(() => {
-    tg.sendData(JSON.stringify({ msg: 'Привіт з кнопки!' }))
+    tg.sendData(JSON.stringify({ from: 'mainButton', time: Date.now() }))
   })
   tg.MainButton.show()
 })
 
-function sendData() {
+function sendLocal() {
   const tg = window.Telegram?.WebApp
-  if (tg) {
-    tg.sendData(JSON.stringify({ msg: 'Привіт з локальної кнопки!' }))
-  }
+  tg?.sendData(JSON.stringify({ from: 'localClick' }))
 }
 </script>
 
 <style scoped>
-div {
-  font-size: 1.2rem;
-  padding: 1rem;
-}
 button {
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  font-weight: bold;
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 16px;
 }
 </style>
